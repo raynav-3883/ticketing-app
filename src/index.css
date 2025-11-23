@@ -1,0 +1,129 @@
+@import "leaflet/dist/leaflet.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 15% 97%;
+    --foreground: 220 9% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 9% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 9% 15%;
+
+    --primary: 214 84% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 214 20% 92%;
+    --secondary-foreground: 220 9% 15%;
+
+    --muted: 214 20% 92%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 43 96% 56%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 20% 85%;
+    --input: 214 20% 85%;
+    --ring: 214 84% 56%;
+
+    /* Travel-themed colors */
+    --travel-blue: 214 84% 56%;
+    --travel-orange: 25 95% 53%;
+    --travel-green: 142 76% 36%;
+    --travel-purple: 262 83% 58%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(214 84% 56%), hsl(262 83% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(214 84% 56%) 0%, hsl(25 95% 53%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(214 20% 96%));
+    
+    /* Shadows */
+    --shadow-travel: 0 10px 30px -5px hsl(214 84% 56% / 0.2);
+    --shadow-card: 0 4px 20px -2px hsl(220 9% 46% / 0.1);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 27% 8%;
+    --foreground: 220 15% 92%;
+
+    --card: 220 27% 12%;
+    --card-foreground: 220 15% 92%;
+
+    --popover: 220 27% 12%;
+    --popover-foreground: 220 15% 92%;
+
+    --primary: 214 84% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 27% 18%;
+    --secondary-foreground: 220 15% 92%;
+
+    --muted: 220 27% 18%;
+    --muted-foreground: 220 15% 65%;
+
+    --accent: 43 96% 56%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 27% 18%;
+    --input: 220 27% 18%;
+    --ring: 214 84% 56%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(214 84% 56%), hsl(262 83% 58%));
+    --gradient-hero: linear-gradient(135deg, hsl(214 84% 56%) 0%, hsl(25 95% 53%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 27% 12%), hsl(220 27% 15%));
+    
+    --shadow-travel: 0 10px 30px -5px hsl(214 84% 56% / 0.3);
+    --shadow-card: 0 4px 20px -2px hsl(0 0% 0% / 0.3);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
