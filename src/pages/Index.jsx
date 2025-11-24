@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { 
-  Navigation, 
-  TravelExplore, 
-  SmartToy, 
-  Hub, 
+import {
+  Navigation,
+  TravelExplore,
+  SmartToy,
+  Hub,
   AutoGraph,
   Psychology,
   Language,
@@ -17,7 +17,10 @@ import TravelMap from "../components/TravelMap";
 import AIAssistant from "../components/AIAssistant";
 import StatsOverview from "../components/StatsOverview";
 import travelHeroImage from "../assets/travel-hero.jpg";
-import { dummyRoutes } from "../data/dummyRoutes"; 
+import { dummyRoutes } from "../data/dummyRoutes";
+import { Link } from "react-router-dom";
+import { useAuth } from "../lib/auth";
+
 
 const Index = () => {
   const [routes, setRoutes] = useState([]);
@@ -115,13 +118,13 @@ const Index = () => {
   ];
   const navigate = useNavigate();
   const handleSearch = (data) => {
-  setSearchData(data);
+    setSearchData(data);
 
-  // 👇 this will open a new tab with query parameters
-  const url = `/results?from=${encodeURIComponent(data.from)}&to=${encodeURIComponent(data.to)}`;
-  window.open(url, "_blank");
-};
-
+    // 👇 this will open a new tab with query parameters
+    const url = `/results?from=${encodeURIComponent(data.from)}&to=${encodeURIComponent(data.to)}`;
+    window.open(url, "_blank");
+  };
+  const { user, logout } = useAuth();
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900/20 to-purple-800/30">
       {/* Navigation Bar */}
@@ -137,13 +140,29 @@ const Index = () => {
                 <h1 className="text-2xl font-bold text-white tracking-tight">
                   Voyage<span className="text-blue-400">Net</span>
                 </h1>
-               <p className="text-xs text-sky-500/80 -mt-1">
-  Network-Based Intelligent Travel System
-</p>
+                <p className="text-xs text-sky-500/80 -mt-1">
+                  Network-Based Intelligent Travel System
+                </p>
 
               </div>
             </div>
             <div className="hidden md:flex items-center gap-6 text-white/80 text-sm">
+              {user ? (
+                <div className="flex items-center gap-3">
+                  <span className="text-sm text-white/90">{user.name}</span>
+                  <button
+                    onClick={logout}
+                    className="text-sm text-white/80 bg-white/10 px-3 py-1 rounded hover:bg-white/20"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <div className="flex items-center gap-4">
+                  <Link to="/login" className="text-sm text-white/90 hover:text-white">Login</Link>
+                  <Link to="/signup" className="text-sm text-white/90 hover:text-white bg-white/10 px-3 py-1 rounded">Sign up</Link>
+                </div>
+              )}
               <span className="flex items-center gap-1 hover:text-white transition-colors cursor-pointer">
                 <Language className="text-sm" />
                 Global Network
@@ -167,7 +186,7 @@ const Index = () => {
         style={{ backgroundImage: `url(${travelHeroImage})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-blue-900/60" />
-        
+
         {/* Network Animation Overlay */}
         <div className="absolute inset-0 opacity-20">
           <div className="relative w-full h-full overflow-hidden">
@@ -177,7 +196,7 @@ const Index = () => {
             <div className="absolute bottom-32 left-1/3 w-2.5 h-2.5 bg-cyan-400 rounded-full animate-pulse delay-700" />
             <div className="absolute bottom-40 right-1/4 w-1.5 h-1.5 bg-blue-300 rounded-full animate-pulse delay-1000" />
             <div className="absolute top-1/2 left-1/2 w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full animate-pulse delay-500" />
-            
+
             {/* Connecting lines */}
             <svg className="absolute inset-0 w-full h-full">
               <line x1="25%" y1="20%" x2="50%" y2="50%" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="1" strokeDasharray="5,5">
@@ -210,12 +229,12 @@ const Index = () => {
                 </div>
               </div>
             </div>
-            
+
             <p className="text-xl mb-8 opacity-90 leading-relaxed">
-              Harness the power of our global transportation network with AI-driven route optimization. 
+              Harness the power of our global transportation network with AI-driven route optimization.
               Discover the most efficient paths across multiple transport modes with real-time intelligence.
             </p>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
               <div className="flex flex-col items-center gap-2 p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/10">
                 <Navigation className="text-2xl text-blue-400" />
@@ -284,7 +303,7 @@ const Index = () => {
                 AI-analyzed routes from {searchData.from} to {searchData.to}
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-2">
                 <RouteResults routes={routes} loading={loading} />

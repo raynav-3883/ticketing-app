@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 console.log("SERVER: API KEY =", process.env.OPENAI_API_KEY);
-
+import { signupHandler, loginHandler } from "./routes/auth.js";
 
 import express from "express";
 import cors from "cors";
@@ -30,6 +30,9 @@ app.get("/api/balanced", getBalanced);
 
 // Chatbot API
 app.post("/api/chat", chatHandler);
+
+app.post("/api/signup", signupHandler);
+app.post("/api/login", loginHandler);
 
 // Start server
 app.listen(process.env.PORT || 5000, () => {
